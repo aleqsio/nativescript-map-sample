@@ -12,7 +12,7 @@ const pages: Record<string, string> = {
 function openLink(url: string) {
   const moduleName = pages[url.replace(/^nsmapsample:\/\//, '').replace(/\/$/, '')]
   if (!moduleName) return false
-  Frame.topmost()?.navigate({ moduleName, clearHistory: moduleName === pages.home, animated: false })
+  Frame.topmost()?.navigate({ moduleName, animated: false })
   return true
 }
 
