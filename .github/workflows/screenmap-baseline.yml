@@ -1,0 +1,36 @@
+# .github/workflows/screenmap-baseline.yml — keep the map of main fresh
+name: screenmap · baseline
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: screenmap-baseline
+  cancel-in-progress: false
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  baseline:
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # The Action never builds a NativeScript app: build the simulator .app
+      # here and hand it over as app_path.
+      - name: Build the app
+        run: |
+          npm ci
+          npm install -g nativescript
+          ns usage-reporting disable && ns error-reporting disable
+          ns build ios --for-device=false
+      - uses: aleqsio/screenmap@nativescript-fixes
+        with:
+          mode: baseline
+          app_path: platforms/ios/build/Debug-iphonesimulator/nssampleapp.app
+          flows_pr: "false"

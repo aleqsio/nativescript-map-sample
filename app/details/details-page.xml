@@ -1,0 +1,8 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
+  <ActionBar title="Details" />
+  <StackLayout class="p-20">
+    <Label text="Item #42" class="h1" />
+    <Label text="A detail screen reached from Home, or by nsmapsample://details." textWrap="true" class="body" />
+    <Button text="Settings" tap="onOpenSettings" />
+  </StackLayout>
+</Page>

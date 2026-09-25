@@ -1,0 +1,12 @@
+{
+  "$comment": "screenmap config for the NativeScript sample: which page each nsmapsample:// link opens (see app/app.ts)",
+  "appName": "nativescript-map-sample",
+  "device": "iPhone 17 Pro",
+  "routes": {
+    "links": {
+      "home/home-page": "home",
+      "details/details-page": "details",
+      "settings/settings-page": "settings"
+    }
+  }
+}

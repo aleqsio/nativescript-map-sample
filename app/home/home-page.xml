@@ -1,10 +1,9 @@
 <Page navigatingTo="onNavigatingTo" xmlns="http://schemas.nativescript.org/tns.xsd">
-    
-    <ActionBar>
-        <Label text="Home" />
-    </ActionBar>
-
-    <GridLayout>
-        <!-- Add your page content here -->
-    </GridLayout>
+  <ActionBar title="Home" />
+  <StackLayout class="p-20">
+    <Label text="NativeScript map sample" class="h1" textWrap="true" />
+    <Label text="A small Core app the screenmap Action maps on every push." textWrap="true" class="body" />
+    <Button text="Open details" tap="onOpenDetails" class="-primary" />
+    <Button text="Settings" tap="onOpenSettings" />
+  </StackLayout>
 </Page>

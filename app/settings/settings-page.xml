@@ -1,0 +1,13 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
+  <ActionBar title="Settings" />
+  <StackLayout class="p-20">
+    <GridLayout columns="*, auto" class="m-b-10">
+      <Label text="Notifications" col="0" verticalAlignment="center" />
+      <Switch checked="true" col="1" />
+    </GridLayout>
+    <GridLayout columns="*, auto">
+      <Label text="Version" col="0" />
+      <Label text="1.0.0" col="1" />
+    </GridLayout>
+  </StackLayout>
+</Page>

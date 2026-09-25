@@ -1,0 +1,34 @@
+# .github/workflows/screenmap-pr.yml — review what a PR changes on-screen
+name: screenmap · PR changes
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+concurrency:
+  group: screenmap-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+permissions:
+  contents: write        # push bundles to the screenmaps branch
+  pull-requests: write   # sticky comment
+jobs:
+  changes:
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # The Action never builds a NativeScript app: build the simulator .app
+      # here and hand it over as app_path.
+      - name: Build the app
+        run: |
+          npm ci
+          npm install -g nativescript
+          ns usage-reporting disable && ns error-reporting disable
+          ns build ios --for-device=false
+      - uses: aleqsio/screenmap@nativescript-fixes
+        with:
+          mode: pr
+          app_path: platforms/ios/build/Debug-iphonesimulator/nssampleapp.app
