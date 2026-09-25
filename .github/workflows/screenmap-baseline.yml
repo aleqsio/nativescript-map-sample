@@ -24,13 +24,16 @@ jobs:
       # The Action never builds a NativeScript app: build the simulator .app
       # here and hand it over as app_path.
       - name: Build the app
+        id: build
         run: |
           npm ci
           npm install -g nativescript
           ns usage-reporting disable && ns error-reporting disable
           ns build ios --for-device=false
+          # the .app is named after the checkout directory, so find it
+          echo "app=$(ls -d platforms/ios/build/Debug-iphonesimulator/*.app)" >> "$GITHUB_OUTPUT"
       - uses: aleqsio/screenmap@nativescript-fixes
         with:
           mode: baseline
-          app_path: platforms/ios/build/Debug-iphonesimulator/nssampleapp.app
+          app_path: ${{ steps.build.outputs.app }}
           flows_pr: "false"
