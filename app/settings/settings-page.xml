@@ -7,7 +7,7 @@
     </GridLayout>
     <GridLayout rows="auto" columns="*, auto">
       <Label text="Version" col="0" />
-      <Label text="1.0.0" col="1" />
+      <Label text="1.0.1" col="1" />
     </GridLayout>
   </StackLayout>
 </Page>
